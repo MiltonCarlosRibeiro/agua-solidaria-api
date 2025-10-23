@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Água Solidária - Gestão de Doações</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<h1>💧 Água Solidária</h1>
+<h2>Registro de Doações para Casas de Repouso</h2>
+
+<div class="container">
+    <div class="form-container">
+        <h3>Adicionar / Editar Doação</h3>
+        <form id="doacao-form">
+            <input type="hidden" id="doacaoId" name="id">
+            <input type="text" id="nomeInstituicao" placeholder="Nome da Instituição" required>
+            <input type="text" id="endereco" placeholder="Endereço" required>
+            <input type="number" id="litrosDoados" placeholder="Litros Doados" required>
+            <input type="datetime-local" id="dataDoacao" required>
+            <input type="text" id="responsavelRecebimento" placeholder="Responsável pelo Recebimento" required>
+            <button type="submit">Salvar Doação</button>
+            <button type="button" id="btn-cancelar" class="cancel-button hidden">Cancelar Edição</button>
+        </form>
+    </div>
+
+    <div class="list-container">
+        <h3>Doações Registradas</h3>
+        <table id="doacoes-tabela">
+            <thead>
+            <tr>
+                <th>Instituição</th>
+                <th>Litros</th>
+                <th>Data</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody id="doacoes-lista">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
