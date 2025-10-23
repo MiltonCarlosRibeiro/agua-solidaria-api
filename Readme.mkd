@@ -1,0 +1,158 @@
+# 💧 Projeto Água Solidária
+
+![Java](https://img.shields.io/badge/Java-21-blue.svg)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.5-brightgreen.svg)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green.svg)
+![Maven](https://img.shields.io/badge/Maven-3.9-red.svg)
+![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen.svg)
+
+Repositório da API para o projeto "Água Solidária", uma aplicação full-stack para gestão de doações de água para casas de repouso. Este projeto foi desenvolvido como parte de uma atividade avaliativa, com foco na aplicação de testes automatizados com BDD (Behavior Driven Development) em um contexto alinhado aos princípios de ESG (Environmental, Social and Governance).
+
+---
+
+## 📋 Tabela de Conteúdos
+
+1.  [Visão Geral](#-visão-geral)
+2.  [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+3.  [Pré-requisitos](#-pré-requisitos)
+4.  [Configuração do Ambiente](#-configuração-do-ambiente)
+5.  [Executando a Aplicação](#-executando-a-aplicação)
+6.  [Executando os Testes](#-executando-os-testes)
+7.  [Estrutura do Projeto](#-estrutura-do-projeto)
+8.  [Endpoints da API](#-endpoints-da-api)
+9.  [Autor](#-autor)
+
+---
+
+## 🚀 Visão Geral
+
+A aplicação permite o registro, visualização, atualização e exclusão de registros de doações de água. Ela é composta por:
+
+* **Backend:** Uma API RESTful construída com Java e Spring Boot.
+* **Frontend:** Uma interface de usuário estática (Single Page Application) com HTML, CSS e JavaScript que consome a API.
+* **Banco de Dados:** Um cluster NoSQL na nuvem utilizando MongoDB Atlas.
+* **Testes:** Uma suíte de testes de comportamento automatizados com Cucumber e Gherkin para validar as funcionalidades da API.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Backend:**
+    - Java 21
+    - Spring Boot 3.3.5
+    - Spring Web
+    - Spring Data MongoDB
+    - Maven
+    - Lombok
+- **Frontend:**
+    - HTML5
+    - CSS3
+    - JavaScript (com `fetch` API)
+- **Banco de Dados:**
+    - MongoDB Atlas
+- **Testes:**
+    - JUnit 5
+    - Cucumber 7.18.0
+    - Gherkin
+
+---
+
+## ✅ Pré-requisitos
+
+Antes de começar, certifique-se de ter instalado em sua máquina:
+
+* [JDK 21](https://www.oracle.com/java/technologies/downloads/#jdk21-windows) ou superior
+* [Apache Maven](https://maven.apache.org/download.cgi) 3.9+
+* [Git](https://git-scm.com/downloads)
+* Uma IDE de sua preferência (ex: IntelliJ IDEA, VS Code)
+
+---
+
+## ⚙️ Configuração do Ambiente
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/MiltonCarlosRibeiro/agua-solidaria-api.git](https://github.com/MiltonCarlosRibeiro/agua-solidaria-api.git)
+    cd agua-solidaria-api
+    ```
+
+2.  **Configure o Banco de Dados:**
+    - Crie um cluster gratuito no [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
+    - Crie um usuário de banco de dados (ex: `milton` com senha `alface`).
+    - Libere o acesso de qualquer IP (`0.0.0.0/0`).
+    - Obtenha a sua string de conexão (URI).
+
+3.  **Atualize o arquivo de propriedades:**
+    - Abra o arquivo `src/main/resources/application.properties`.
+    - Substitua o valor da propriedade `spring.data.mongodb.uri` pela sua string de conexão do MongoDB Atlas, inserindo seu usuário e senha.
+    ```properties
+    # Exemplo:
+    spring.data.mongodb.uri=mongodb+srv://SEU_USUARIO:SUA_SENHA@seucluster.mongodb.net/?retryWrites=true&w=majority&appName=SeuCluster
+    ```
+
+---
+
+## ▶️ Executando a Aplicação
+
+Você pode executar a aplicação de duas maneiras:
+
+1.  **Pela IDE:**
+    - Abra o projeto na sua IDE.
+    - Localize a classe `AguaSolidariaApplication.java` e execute-a.
+
+2.  **Via linha de comando (Maven):**
+    ```bash
+    mvn spring-boot:run
+    ```
+
+A aplicação estará disponível em `http://localhost:8080`.
+
+---
+
+## 🧪 Executando os Testes
+
+A suíte de testes automatizados com BDD pode ser executada de duas formas:
+
+1.  **Pela IDE:**
+    - Navegue até a classe `src/test/java/br/com/solidaria/aguasolidaria/CucumberTestRunner.java`.
+    - Clique com o botão direito e selecione "Run 'CucumberTestRunner'".
+
+2.  **Via linha de comando (Maven):**
+    Este comando irá compilar o projeto e rodar todos os testes.
+    ```bash
+    mvn test
+    ```
+    Ao final, você deverá ver a mensagem `BUILD SUCCESS`.
+
+---
+
+## 📂 Estrutura do Projeto
+
+O código-fonte está organizado da seguinte forma:
+
+└── src ├── main │ ├── java/br/com/solidaria/aguasolidaria │ │ ├── config # Configurações do Spring │ │ ├── controller # Endpoints da API REST │ │ ├── model # Entidades do banco de dados │ │ ├── repository # Interfaces de acesso aos dados │ │ └── service # Lógica de negócio │ └── resources │ ├── static # Arquivos CSS e JS │ ├── templates # Arquivos HTML │ └── application.properties # Configurações da aplicação └── test ├── java/br/com/solidaria/aguasolidaria │ ├── steps # Implementação dos passos (steps) do Gherkin │ └── CucumberTestRunner.java # Classe para executar os testes └── resources └── features # Arquivos .feature com os cenários em Gherkin
+
+
+---
+
+## 🌐 Endpoints da API
+
+A API expõe os seguintes endpoints para o recurso `Doacao`:
+
+| Método | URL                 | Descrição                                |
+| :----- | :------------------ | :--------------------------------------- |
+| `GET`  | `/api/doacoes`      | Lista todas as doações.                    |
+| `GET`  | `/api/doacoes/{id}` | Busca uma doação específica pelo seu ID. |
+| `POST` | `/api/doacoes`      | Cria uma nova doação.                    |
+| `PUT`  | `/api/doacoes/{id}` | Atualiza uma doação existente.           |
+| `DELETE`| `/api/doacoes/{id}` | Deleta uma doação.                       |
+
+---
+
+## 👨‍💻 Autores
+
+- **Milton Carlos Ribeiro** 
+- **Hugo Correa Farranha** 
+- **Victor Mazzola**
+- 
+- [GitHub](https://github.com/MiltonCarlosRibeiro
